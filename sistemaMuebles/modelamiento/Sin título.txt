@@ -1,0 +1,87 @@
+
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`productos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`productos` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `foto` VARCHAR(45) NULL,
+  `stock` INT NULL,
+  `precio` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`categoria` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `productos_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`detalle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`detalle` (
+  `id` INT NOT NULL,
+  `cantidad` INT(10) NULL,
+  `precio` DOUBLE NULL,
+  `importe` DOUBLE NULL,
+  `productos_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`cliente` (
+  `id` INT NOT NULL,
+  `razoSocial` VARCHAR(45) NULL,
+  `documento` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `celular` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`vendedores`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`vendedores` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `apellido` VARCHAR(45) NULL,
+  `DNI` VARCHAR(45) NULL,
+  `fechaN` DATE NULL,
+  `celular` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`comprobantes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`comprobantes` (
+  `id` INT NOT NULL,
+  `numero` VARCHAR(45) NULL,
+  `fecha` DATE NULL,
+  `subtotal` DOUBLE NULL,
+  `IGV` DOUBLE NULL,
+  `total` DOUBLE NULL,
+  `cliente_id` INT NOT NULL,
+  `detalle_id` INT NOT NULL,
+  `vendedores_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+

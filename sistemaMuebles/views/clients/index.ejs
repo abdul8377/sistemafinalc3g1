@@ -1,0 +1,82 @@
+<%- include('../partials/sidebar.ejs'); %>
+        <main class="">
+            <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-white border-4 border-green-400">
+                <div class="py-5">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <!--Boton nuevo   -->
+                            <div class="space-x-8 mb-2">
+                                <a href="/clients/add" class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" >
+                                    <i class="fa-solid fa-plus"></i></i> Nuevo
+                                </a>
+                            </div>
+                            <% if (messages.success) { %>
+                              <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                                <div class="flex">
+                                  <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                                  <div>
+                                    <p class="font-bold"><%- messages.success %></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+                          
+                              <% if (messages.error) { %>
+                              <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert">
+                                <div class="flex">
+                                  <div class="py-1"><svg class="fill-current h-6 w-6 text-red-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                                  <div>
+                                    <p class="font-bold"><%- messages.error %></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+                    
+                        <!--Tabla lista de items   -->
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="w-full divide-y divide-gray-200 table-auto">
+                              <thead class="bg-indigo-500 text-white">
+                                <tr class="text-justify text-xs font-bold  uppercase">
+                                  <td scope="col" class="px-6 py-3">ID</td>
+                                  <td scope="col" class="px-6 py-3">Nombre</td>
+                                  <td scope="col" class="px-6 py-3">apellido</td>
+                                  <td scope="col" class="px-6 py-3">dni</td>
+                                  <td scope="col" class="px-6 py-3">direccion</td>
+                                  <td scope="col" class="px-6 py-3">email</td>
+                                  <td scope="col" class="px-6 py-3">celular</td>
+                                  <td scope="col" class="px-6 py-3">opciones</td>
+                                </tr>
+                              </thead>
+                              <tbody class="divide-y divide-gray-200 dark:text-gray-400">
+                                <% for(var i = 0; i< data.length; i++) { %>
+                                <tr class="text-sm font-medium text-gray-900">
+                                  <td class="px-6 py-4">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-500 text-white">
+                                        <%= data[i].id%>
+                                    </span>
+                                  <td class="px-6 py-4 dark:text-gray-400"><%= data[i].nombre%></td>
+                                  <td class="px-6 py-4 dark:text-gray-400"><%= data[i].apellido%></td>
+                                  <td class="px-6 py-4 dark:text-gray-400"><%= data[i].dni%></td>
+                                  <td class="px-6 py-4 dark:text-gray-400"><%= data[i].direccion%></td>
+                                  <td class="px-6 py-4 dark:text-gray-400"><%= data[i].email%></td>
+                                  <td class="px-6 py-4 dark:text-gray-400"><%= data[i].celular%></td>
+
+                                  <td class="px-6 py-4">
+                                    <a href="../clients/edit/<%=data[i].id%>" class="mr-1 bg-green-600 text-white rounded px-2 py-2 hover:bg-green-200"><i class="fa-solid fa-pen-to-square"></i> actualizar</a>
+                                    <a href="../clients/delete/<%=data[i].id%>" onclick="return confirm('Are You sure?')" class="bg-red-600 text-white rounded px-2 py-2 hover:bg-red-200"><i class="fa-solid fa-trash"></i>Eliminar</a>
+                                  </td>
+                                </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
+                                    <!-- if result is empty -->
+                        <% if(!data.length) { %>
+                            <p class="text-center">no se encontraron productos!</p>
+                        <% } %>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    <%- include('../partials/footer.ejs'); %>
